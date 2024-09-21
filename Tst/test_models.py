@@ -36,6 +36,21 @@ class test_models(unittest.TestCase):
 
         # Проверка
         assert item1 == item2
+    def test_nomenclature_exists(self):
+        # Проверяем, что данные по номенклатуре созданы
+        assert len(self.__reposity.data['nomenclatures']) > 0
+
+    def test_ranges_exists(self):
+        # Проверяем, что данные по единицам измерения созданы
+        assert len(self.__reposity.data['ranges']) > 0
+
+    def test_groups_exists(self):
+        # Проверяем, что данные по группам созданы
+        assert len(self.__reposity.data['group']) > 0
+
+    def test_recipes_exists(self):
+        # Проверяем, что данные по рецептам созданы
+        assert len(self.__reposity.data['recipes']) > 0
 
 
     
