@@ -33,4 +33,21 @@ class range_model(base_model_name):
         validator.validate(value, 'range_model')
         self.__base = value
 
+    @property
+    def name(self) -> 'range_model':
+        return self.__name
+    
+    @name.setter
+    def base(self, value: 'range_model'):
+        validator.validate(value, str)
+        self.__name = value 
+            
+    def __init__(self, value, name, base = None):
+        self.__value = None
+        self.__base = None
+        self.__name = None
+
+        self.value = value
+        self.base = base
+        self.name = name
 

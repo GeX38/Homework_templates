@@ -5,7 +5,12 @@ from Src.Core.abstract_logic import abstract_logic
 Репозиторий данных
 """
 class data_reposity(abstract_logic):
-    __data = {}
+    __data = {
+        "group": [],
+        "nomenclatures": [],
+        "ranges": [],
+        "recipes": []
+    }
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
