@@ -46,4 +46,6 @@ class nomenclature_model(base_model_code):
     def range(self, value: range_model):
         validator.validate(value, range_model)
         self.__range = value
+
+    
     

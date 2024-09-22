@@ -70,38 +70,25 @@ class start_service(abstract_logic):
 
         self.__reposity.data['ranges'] = [range1, range2]
 
-    def __create_nomenclatures(self):
-        nomenclature1 = nomenclature_model()
-        nomenclature1.name = "Пшеничная мука"
-        nomenclature1.group = group_model.default_group_source()
-        nomenclature1.range = self.__reposity.data["ranges"][0]
-
-        nomenclature2 = nomenclature_model()
-        nomenclature2.name = "Сахар"
-        nomenclature2.group = group_model.default_group_source()
-        nomenclature2.range = self.__reposity.data["ranges"][0]
-
-        nomenclature3 = nomenclature_model()
-        nomenclature3.name = "Сливочное масло"
-        nomenclature3.group = group_model.default_group_source()
-        nomenclature3.range = self.__reposity.data["ranges"][0]
-
-        nomenclature4 = nomenclature_model()
-        nomenclature4.name = "Яйца"
-        nomenclature4.group = group_model.default_group_source()
-        nomenclature4.range = self.__reposity.data["ranges"][1]
+    def __create_nomenclature(self, name: str, range_index: int):
+        nomenclature = nomenclature_model()
+        nomenclature.name = name
+        nomenclature.group = group_model.default_group_source()
+        nomenclature.range = self.__reposity.data["ranges"][range_index]
         
-        nomenclature5 = nomenclature_model()
-        nomenclature5.name = "Ванилин"
-        nomenclature5.group = group_model.default_group_source()
-        nomenclature5.range = self.__reposity.data["ranges"][0]
+        return nomenclature
 
-        nomenclature6 = nomenclature_model()
-        nomenclature6.name = "Шоколад"
-        nomenclature6.group = group_model.default_group_source()
-        nomenclature6.range = self.__reposity.data["ranges"][0]
 
-        self.__reposity.data['nomenclatures'] = [nomenclature1, nomenclature2, nomenclature3, nomenclature4, nomenclature5, nomenclature6]
+    def __create_nomenclatures(self):
+
+        self.__reposity.data['nomenclatures'] = [
+            self.__create_nomenclature("Пшеничная мука", 0),
+            self.__create_nomenclature("Сахар", 0), 
+            self.__create_nomenclature("Сливочное масло", 0),
+            self.__create_nomenclature("Яйца", 1),
+            self.__create_nomenclature("Ванилин", 0),
+            self.__create_nomenclature("Шоколад", 0)
+        ]
 
     def create_receipts(self):
 
@@ -127,11 +114,11 @@ class start_service(abstract_logic):
         )
 
         recipe2_ingredients = [
-            Ingredient(self.__reposity.data['nomenclatures'][0], range_model(100, "граммы")),  # Пшеничная мука
-            Ingredient(self.__reposity.data['nomenclatures'][1], range_model(80, "граммы")),   # Сахар
-            Ingredient(self.__reposity.data['nomenclatures'][2], range_model(70, "граммы")),   # Сливочное масло
-            Ingredient(self.__reposity.data['nomenclatures'][3], range_model(1, "шт")),        # Яйца
-            Ingredient(self.__reposity.data['nomenclatures'][4], range_model(5, "граммы")),    # Ванилин
+            Ingredient(self.__reposity.data['nomenclatures'][0], range_model(100, "граммы")),
+            Ingredient(self.__reposity.data['nomenclatures'][1], range_model(80, "граммы")),
+            Ingredient(self.__reposity.data['nomenclatures'][2], range_model(70, "граммы")),
+            Ingredient(self.__reposity.data['nomenclatures'][3], range_model(1, "шт")),
+            Ingredient(self.__reposity.data['nomenclatures'][4], range_model(5, "граммы")),
         ]
 
         recipe2_cooking_steps = [
